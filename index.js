@@ -31,9 +31,7 @@ app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 // PostgreSQL connection URL from environment variable
-// const connectionString = process.env.DATABASE_URL;
-const connectionString =
-  "postgres://owckmosp:an1ex-EnALn-3b9SuIcFQLzrxmDUHh9E@tiny.db.elephantsql.com/owckmosp";
+const connectionString = process.env.DATABASE_URL;
 
 // PostgreSQL connection configuration
 const pool = new Pool({
