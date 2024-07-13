@@ -36,10 +36,9 @@ const connectionString = process.env.DATABASE_URL;
 
 // PostgreSQL connection configuration
 const pool = new Pool({
-  connectionString: connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString: process.env.DATABASE_URL,
+  ssl:
+    process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
 // Test the database connection
