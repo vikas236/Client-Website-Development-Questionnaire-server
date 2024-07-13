@@ -37,11 +37,10 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString: connectionString,
   ssl: {
-    rejectUnauthorized: false,
+    rejectUnauthorized: true, // Ensure the SSL certificate is validated
+    ca: process.env.ssl_cert, // Path to your SSL certificate file
   },
 });
-
-console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
 // Test the database connection
 pool.connect((err, client, release) => {
