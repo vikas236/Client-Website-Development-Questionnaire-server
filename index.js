@@ -41,6 +41,8 @@ const pool = new Pool({
   },
 });
 
+console.log("DATABASE_URL:", process.env.DATABASE_URL);
+
 // Test the database connection
 pool.connect((err, client, release) => {
   if (err) {
