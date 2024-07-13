@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/db_address", (req, res) => {
-  res.send({ message: DATABASE_URL });
+  res.send({ message: process.env.DATABASE_URL });
 });
 
 // Add a route to get all tables from the database
