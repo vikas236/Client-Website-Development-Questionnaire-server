@@ -305,4 +305,4 @@ app.post("/update_answer", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-// server.timeout = 120000;
+server.timeout = 120000;
