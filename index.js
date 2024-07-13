@@ -94,6 +94,18 @@ app.post("/table", async (req, res) => {
   }
 });
 
+app.get("/get_position", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query("SELECT * FROM position");
+    client.release();
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error retrieving tables");
+  }
+});
+
 app.post("/create_table", async (req, res) => {
   const { tableName } = req.body;
 
