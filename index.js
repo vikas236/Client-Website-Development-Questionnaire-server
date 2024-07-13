@@ -38,7 +38,7 @@ const pool = new Pool({
   connectionString: connectionString,
   ssl: {
     rejectUnauthorized: true, // Ensure the SSL certificate is validated
-    ca: process.env.ssl_cert, // Path to your SSL certificate file
+    ca: fs.readFileSync("./certs/ca.pem").toString(), // Path to your SSL certificate file
   },
 });
 
