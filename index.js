@@ -8,20 +8,20 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 
-// Enable CORS for all routes
-app.use(cors());
+// Define your allowed origin
+const allowedOrigin =
+  "https://client-website-development-questionnaire.vercel.app/";
 
-app.use((req, res, next) => {
-  //allow access from every, elminate CORS
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.removeHeader("x-powered-by");
-  //set the allowed HTTP methods to be requested
-  res.setHeader("Access-Control-Allow-Methods", "POST");
-  //headers clients can use in their requests
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  //allow request to continue and be handled by routes
-  next();
-});
+// Set up CORS options
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (origin === allowedOrigin || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 
 // Parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
