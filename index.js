@@ -57,6 +57,10 @@ app.get("/", (req, res) => {
   res.send({ message: "Hello, World!" });
 });
 
+app.get("/db_address", (req, res) => {
+  res.send({ message: DATABASE_URL });
+});
+
 // Add a route to get all tables from the database
 app.get("/tables", async (req, res) => {
   try {
