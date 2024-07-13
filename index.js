@@ -52,6 +52,11 @@ pool.connect((err, client, release) => {
 });
 
 // Define a route
+app.get("/db_address", (req, res) => {
+  res.send(process.env.DATABASE_URL);
+});
+
+// Define a route
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
