@@ -37,8 +37,7 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString: connectionString,
   ssl: {
-    rejectUnauthorized: true, // Ensure the SSL certificate is validated
-    ca: fs.readFileSync("./certs/ca.pem").toString(), // Path to your SSL certificate file
+    rejectUnauthorized: false,
   },
 });
 
