@@ -9,19 +9,32 @@ const app = express();
 const port = 3000;
 
 // Define your allowed origin
-const allowedOrigin =
-  "https://client-website-development-questionnaire.vercel.app/";
+// const allowedOrigin =
+//   "https://client-website-development-questionnaire.vercel.app/";
+// const allowedOrigin = "http://localhost:3000";
 
-// Set up CORS options
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (origin === allowedOrigin || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// // Set up CORS options
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (origin === allowedOrigin || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+
+app.use((req, res, next) => {
+  //allow access from every, elminate CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.removeHeader("x-powered-by");
+  //set the allowed HTTP methods to be requested
+  res.setHeader("Access-Control-Allow-Methods", "POST");
+  //headers clients can use in their requests
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  //allow request to continue and be handled by routes
+  next();
+});
 
 // Parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
