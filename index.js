@@ -30,8 +30,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
+// PostgreSQL connection URL from environment variable
+const connectionString = process.env.DATABASE_URL;
+
+// PostgreSQL connection configuration
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: connectionString,
   ssl: {
     rejectUnauthorized: false,
   },
@@ -49,11 +53,6 @@ pool.connect((err, client, release) => {
     }
     console.log("Connected to the database:", result.rows);
   });
-});
-
-// Define a route
-app.get("/db_address", (req, res) => {
-  res.send(process.env.DATABASE_URL);
 });
 
 // Define a route
