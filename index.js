@@ -54,7 +54,7 @@ pool.connect((err, client, release) => {
 
 // Define a route
 app.get("/", (req, res) => {
-  res.send("Hello, World!");
+  res.send({ message: "Hello, World!" });
 });
 
 // Add a route to get all tables from the database
